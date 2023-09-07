@@ -2,5 +2,6 @@ package hangman.model;
 
 import com.google.inject.Inject;
 
-public class GameScore {
+public interface GameScore {
+    public int calculateScore(int correctCount,int incorrectCount);
 }
