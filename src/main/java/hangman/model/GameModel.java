@@ -33,8 +33,9 @@ public class GameModel {
     private char[] randomWordCharArray;
     
     
-   
-    public GameModel(HangmanDictionary dictionary){
+  
+    public GameModel(HangmanDictionary dictionary) throws ScoreExcetion{
+        try{
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
         randomWord = selectRandomWord();
@@ -42,19 +43,29 @@ public class GameModel {
         incorrectCount = 0;
         correctCount = 0;
         gameScore = game.calculateScore(correctCount, incorrectCount);
-        
+        }
+        catch (ScoreExcetion e){
+            System.out.println(e);
+
+        }
         
         
     }
     
     //method: reset
     //purpose: reset this game model for a new game
-    public void reset(){
-        randomWord = selectRandomWord();
-        randomWordCharArray = randomWord.toCharArray();
-        incorrectCount = 0;
-        correctCount = 0;
-        gameScore = game.calculateScore(correctCount, incorrectCount);
+    public void reset() throws ScoreExcetion{
+        try{
+            randomWord = selectRandomWord();
+            randomWordCharArray = randomWord.toCharArray();
+            incorrectCount = 0;
+            correctCount = 0;
+            gameScore = game.calculateScore(correctCount, incorrectCount);
+        }
+        catch (ScoreExcetion e){
+            System.out.println(e);
+
+        }
     }
 
     //setDateTime
@@ -66,22 +77,29 @@ public class GameModel {
     //method: makeGuess
     //purpose: check if user guess is in string. Return a
     // list of positions if character is found in string
-    public ArrayList<Integer> makeGuess(String guess){
+    public ArrayList<Integer> makeGuess(String guess) throws ScoreExcetion{
         char guessChar = guess.charAt(0);
         ArrayList<Integer> positions = new ArrayList<>();
+        try{
+        
         for(int i = 0; i < randomWordCharArray.length; i++){
             if(randomWordCharArray[i] == guessChar){
                 positions.add(i);
             }
         }
         if(positions.size() == 0){
+            if (game instanceof PowerScore) correctCount = 0;
             incorrectCount++;
         } else {
             correctCount += positions.size();
         }
         gameScore= game.calculateScore(correctCount, incorrectCount);
         return positions;
-        
+        }
+        catch(ScoreExcetion e){
+            System.out.println(e);
+            return positions;
+        }
     }
     
     //getDateTime

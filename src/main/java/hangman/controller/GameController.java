@@ -26,6 +26,7 @@ import hangman.GUI;
 import hangman.SwingProject;
 import hangman.model.GameModel;
 import hangman.model.Language;
+import hangman.model.ScoreExcetion;
 import hangman.view.GamePanel;
 
 public class GameController{
@@ -60,7 +61,10 @@ public class GameController{
         for(JButton jb : panel.getKeyboardButtonArray()){
             jb.addActionListener((ActionEvent e) -> {
                 jb.setEnabled(false);
-                ArrayList<Integer> positions = model.makeGuess(jb.getText());
+                ArrayList<Integer> positions;
+                try {
+                    positions = model.makeGuess(jb.getText());
+                
                 for(int pos : positions){
                     panel.getBlanksArrayList().get(pos).setLetter(jb.getText());
                     panel.getBlanksArrayList().get(pos).repaint();
@@ -68,6 +72,10 @@ public class GameController{
                 if(positions.isEmpty()){
                     panel.getHmPanel().incrementIncorrectGuesses();
                     panel.getHmPanel().repaint();
+                }
+                }catch (ScoreExcetion e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
                 }
                 
                 panel.getPoints().setText(lan.getPointsNameLabel()+ Integer.toString(model.getGameScore()));
@@ -142,7 +150,12 @@ public class GameController{
     //method: resetGame
     //purpose: reset associated view and controller for a new game
     public void resetGame(){
-        model.reset();
+        try {
+            model.reset();
+        } catch (ScoreExcetion e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         panel.getPoints().setText(lan.getPointsNameLabel()+ Integer.toString(model.getGameScore()));
         panel.addBlanks(model.getWordLength());
         panel.getHmPanel().setIncorrectGuesses(0);
