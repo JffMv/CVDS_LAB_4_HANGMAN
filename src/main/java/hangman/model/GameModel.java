@@ -88,7 +88,6 @@ public class GameModel {
             }
         }
         if(positions.size() == 0){
-            if (game instanceof PowerScore) correctCount = 0;
             incorrectCount++;
         } else {
             correctCount += positions.size();
