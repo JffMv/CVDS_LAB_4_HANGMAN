@@ -34,7 +34,7 @@ public class GameModel {
     
     
   
-    public GameModel(HangmanDictionary dictionary) throws ScoreExcetion{
+    public GameModel(HangmanDictionary dictionary) {
         try{
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
@@ -54,7 +54,7 @@ public class GameModel {
     
     //method: reset
     //purpose: reset this game model for a new game
-    public void reset() throws ScoreExcetion{
+    public void reset() {
         try{
             randomWord = selectRandomWord();
             randomWordCharArray = randomWord.toCharArray();
@@ -77,7 +77,7 @@ public class GameModel {
     //method: makeGuess
     //purpose: check if user guess is in string. Return a
     // list of positions if character is found in string
-    public ArrayList<Integer> makeGuess(String guess) throws ScoreExcetion{
+    public ArrayList<Integer> makeGuess(String guess) {
         char guessChar = guess.charAt(0);
         ArrayList<Integer> positions = new ArrayList<>();
         try{

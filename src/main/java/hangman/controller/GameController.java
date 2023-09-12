@@ -62,8 +62,8 @@ public class GameController{
             jb.addActionListener((ActionEvent e) -> {
                 jb.setEnabled(false);
                 ArrayList<Integer> positions;
-                try {
-                    positions = model.makeGuess(jb.getText());
+               
+                positions = model.makeGuess(jb.getText());
                 
                 for(int pos : positions){
                     panel.getBlanksArrayList().get(pos).setLetter(jb.getText());
@@ -73,10 +73,7 @@ public class GameController{
                     panel.getHmPanel().incrementIncorrectGuesses();
                     panel.getHmPanel().repaint();
                 }
-                }catch (ScoreExcetion e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+              
                 
                 panel.getPoints().setText(lan.getPointsNameLabel()+ Integer.toString(model.getGameScore()));
                 int incorrectCount = model.getIncorrectCount();
@@ -150,12 +147,9 @@ public class GameController{
     //method: resetGame
     //purpose: reset associated view and controller for a new game
     public void resetGame(){
-        try {
-            model.reset();
-        } catch (ScoreExcetion e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+       
+        model.reset();
+      
         panel.getPoints().setText(lan.getPointsNameLabel()+ Integer.toString(model.getGameScore()));
         panel.addBlanks(model.getWordLength());
         panel.getHmPanel().setIncorrectGuesses(0);
