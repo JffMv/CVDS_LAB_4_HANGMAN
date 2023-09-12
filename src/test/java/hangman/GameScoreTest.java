@@ -20,6 +20,7 @@ public class GameScoreTest {
         try{
         GameScore play = new OriginalScore();
         int resultNum = play.calculateScore(-20, -100);
+        
         Assert.assertTrue(false);
     }
         catch(ScoreExcetion e){
