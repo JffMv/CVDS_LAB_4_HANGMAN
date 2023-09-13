@@ -42,7 +42,7 @@ public class GamePanel extends JPanel{
     private ArrayList<LetterBlankPanel> blanksArrayList;
     private List<Character> characterSet;
     
-    
+    @Inject
     public GamePanel(List<Character> characterSet,HangmanPanel hmPanel,Language lan) {
         this.hmPanel=hmPanel;
         this.lan=lan;

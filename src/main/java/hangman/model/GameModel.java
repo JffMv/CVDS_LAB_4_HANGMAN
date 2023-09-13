@@ -17,6 +17,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 
 public class GameModel {
     private int incorrectCount;
@@ -24,7 +27,9 @@ public class GameModel {
     private LocalDateTime dateTime;
     private int gameScore;
     private int[] lettersUsed;
-    private GameScore game = new PowerScore();
+
+    @Inject @Named("GameScore")
+    private GameScore game;
     
     private HangmanDictionary dictionary;
     
@@ -33,7 +38,7 @@ public class GameModel {
     private char[] randomWordCharArray;
     
     
-  
+    
     public GameModel(HangmanDictionary dictionary) {
         try{
         //this.dictionary = new EnglishDictionaryDataSource();
@@ -54,6 +59,7 @@ public class GameModel {
     
     //method: reset
     //purpose: reset this game model for a new game
+    //@Inject
     public void reset() {
         try{
             randomWord = selectRandomWord();
@@ -77,6 +83,7 @@ public class GameModel {
     //method: makeGuess
     //purpose: check if user guess is in string. Return a
     // list of positions if character is found in string
+   // @Inject
     public ArrayList<Integer> makeGuess(String guess) {
         char guessChar = guess.charAt(0);
         ArrayList<Integer> positions = new ArrayList<>();
