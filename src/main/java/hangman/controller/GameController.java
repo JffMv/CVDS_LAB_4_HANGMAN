@@ -23,13 +23,11 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 import hangman.GUI;
-import hangman.SwingProject;
 import hangman.model.GameModel;
 import hangman.model.Language;
-import hangman.model.ScoreExcetion;
 import hangman.view.GamePanel;
 
-public class GameController{
+public class GameController {
     private GamePanel panel;
     private GameModel model;
     private MainFrameController rootController;
