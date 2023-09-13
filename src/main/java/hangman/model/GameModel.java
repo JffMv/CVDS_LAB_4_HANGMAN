@@ -28,7 +28,6 @@ public class GameModel {
     private int gameScore;
     private int[] lettersUsed;
 
-    @Inject @Named("GameScore")
     private GameScore game;
     
     private HangmanDictionary dictionary;
@@ -36,13 +35,12 @@ public class GameModel {
     private Scanner scan;
     private String randomWord;
     private char[] randomWordCharArray;
-    
-    
-    
-    public GameModel(HangmanDictionary dictionary) {
+
+    public GameModel(HangmanDictionary dictionary, GameScore game) {
         try{
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
+        this.game = game;
         randomWord = selectRandomWord();
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
